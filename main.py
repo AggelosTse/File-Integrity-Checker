@@ -7,19 +7,20 @@ from verifyHash import verify_file_integrity
 
 
 def main():
-    os.system("clear")
+    os.system("clear") 
     print("Εργαστηριακή Άσκηση - Έλεγχος Ακεραιότητας Αρχείων\n")
+    
     hash_created = False
     algorithms = ["MD5", "SHA-1", "SHA-256", "SHA3-256"]
     
     while True:
         
-        print("1. Create hash value for file \n")
+        print("1. Create hash value for file \n")       #start the program depending on user's choise
         print("2. Confirm hash value for file \n")
         print("3. Exit program \n")
         
         useranswer = input()
-        while useranswer not in ["1", "2", "3"]:
+        while useranswer not in ["1", "2", "3"]:        #making sure input is valid
             os.system("clear")
             useranswer = input("Input wrong, try again. \n")
         
@@ -32,7 +33,7 @@ def main():
 
             file_path = input("Give file path \n")
             
-            current = calculate_file_hash(file_path, algo)
+            current = calculate_file_hash(file_path, algo)          #function that calculates the current hash value
             if current:
                 print(f"Hash value of the file: {current}")
                 time.sleep(7)  
@@ -42,7 +43,7 @@ def main():
                 print("Failed to generate hash.\n")
             
         elif useranswer == "2":
-            if not hash_created:
+            if not hash_created:                     #you can confirm the hash value ONLY if there's already one created.
                 print("Error occured. Hash value not created. \n")
                 time.sleep(2)
                 os.system("clear")
@@ -55,10 +56,10 @@ def main():
 
             file_path = input("Give file path \n")        
             original = input("Give the original hash value: \n")
-            current = calculate_file_hash(file_path, algo)
+            current = calculate_file_hash(file_path, algo)      #creates a hash value again for the file
             
             if current:
-                sameOrNot = verify_file_integrity(original, current)
+                sameOrNot = verify_file_integrity(original, current)    #then checks if the latest hash value created, is the same as the old one
                 if sameOrNot:
                     print("The hash values are the same.")
                 else:
