@@ -4,12 +4,13 @@ import time
 
 from calculateHash import calculate_file_hash
 from verifyHash import verify_file_integrity
-
+from clearscreen import clearscr
 
 def main():
     os.system("clear") 
     print("Εργαστηριακή Άσκηση - Έλεγχος Ακεραιότητας Αρχείων\n")
     
+    oldHashValue = None
     hash_created = False
     algorithms = ["MD5", "SHA-1", "SHA-256", "SHA3-256"]
     
@@ -21,11 +22,11 @@ def main():
         
         useranswer = input()
         while useranswer not in ["1", "2", "3"]:        #making sure input is valid
-            os.system("clear")
+            clearscr()
             useranswer = input("Input wrong, try again. \n")
         
         if useranswer == "1":
-            os.system("clear")
+            clearscr()
             
             algo = input("What type of algorithm: \n").strip().upper()  
             while algo not in algorithms:
@@ -34,10 +35,11 @@ def main():
             file_path = input("Give file path \n")
             
             current = calculate_file_hash(file_path, algo)          #function that calculates the current hash value
+            oldHashValue = current
             if current:
                 print(f"Hash value of the file: {current}")
-                time.sleep(7)  
-                os.system("clear") 
+                time.sleep(3)  
+                clearscr()
                 hash_created = True 
             else:
                 print("Failed to generate hash.\n")
@@ -46,16 +48,16 @@ def main():
             if not hash_created:                     #you can confirm the hash value ONLY if there's already one created.
                 print("Error occured. Hash value not created. \n")
                 time.sleep(2)
-                os.system("clear")
+                clearscr()
                 continue 
-            
+            clearscr()
             algo = input("What type of algorithm: \n").strip().upper() 
 
             while algo not in algorithms:
                 algo = input("Error occurred. Try again with a valid algorithm: (MD5, SHA-1, SHA-256, SHA3-256) \n").strip().upper()
 
             file_path = input("Give file path \n")        
-            original = input("Give the original hash value: \n")
+            original = input(f"Give the original hash value: (latest hash value of the file: {oldHashValue}) \n")
             current = calculate_file_hash(file_path, algo)      #creates a hash value again for the file
             
             if current:
@@ -64,13 +66,14 @@ def main():
                     print("The hash values are the same.")
                 else:
                     print("The hash values are different.")
-                
+                oldHashValue = None
+                hash_created = False
         else:
             print("Exiting program.")
             return
         
         time.sleep(2)
-        os.system("clear")
+        clearscr()
 
 if __name__ == "__main__":
     main()
