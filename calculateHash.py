@@ -15,7 +15,7 @@ def calculate_file_hash(file_path, algorithm):  #takes the path of a file, and t
         return None
     
     try:
-        with open(file_path, 'rb') as f:
+        with open(file_path, 'rb') as f: 
             while True:
                 block = f.read(4096)  # "break" the file into smaller chuncks of 4096 bytes
                 if not block:         # if there's no other block left, it stops

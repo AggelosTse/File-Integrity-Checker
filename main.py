@@ -3,16 +3,18 @@ import os
 import time
 
 from calculateHash import calculate_file_hash
-from verifyHash import verify_file_integrity
 from clearscreen import clearscr
+from verifyHash import verify_file_integrity
+
 
 def main():
-    os.system("clear") 
+    
+    clearscr()
     print("Εργαστηριακή Άσκηση - Έλεγχος Ακεραιότητας Αρχείων\n")
     
-    oldHashValue = None
-    hash_created = False
-    algorithms = ["MD5", "SHA-1", "SHA-256", "SHA3-256"]
+    oldHashValue = None     # it contains the hash value when it's created
+    hash_created = False    # bool variable checking if the hash value is created or not
+    algorithms = ["md5", "sha-1", "sha-256", "sha3-256"]    
     
     while True:
         
@@ -28,21 +30,24 @@ def main():
         if useranswer == "1":
             clearscr()
             
-            algo = input("What type of algorithm: \n").strip().upper()  
-            while algo not in algorithms:
-                algo = input("Error occurred. Try again with a valid algorithm: (MD5, SHA-1, SHA-256, SHA3-256) \n").strip().upper()
-
+            algo = input("What type of algorithm: \n").strip().lower()  
+            while algo not in algorithms:                                   #checking for valid user input
+                algo = input("Error occurred. Try again with a valid algorithm: (MD5, SHA-1, SHA-256, SHA3-256) \n").strip().lower()
+                
+                
+            clearscr()
             file_path = input("Give file path \n")
             
             current = calculate_file_hash(file_path, algo)          #function that calculates the current hash value
-            oldHashValue = current
+            
+            oldHashValue = current                          #when hash value is created, it is stored in this variable
             if current:
                 print(f"Hash value of the file: {current}")
                 time.sleep(3)  
                 clearscr()
-                hash_created = True 
+                hash_created = True     #hash value created successfully
             else:
-                print("Failed to generate hash.\n")
+                print("Failed to generate hash.\n")     #if anything goes wrong, current will be empty, so it goes back to menu
             
         elif useranswer == "2":
             if not hash_created:                     #you can confirm the hash value ONLY if there's already one created.
@@ -50,6 +55,7 @@ def main():
                 time.sleep(2)
                 clearscr()
                 continue 
+            
             clearscr()
             algo = input("What type of algorithm: \n").strip().upper() 
 
@@ -66,8 +72,8 @@ def main():
                     print("The hash values are the same.")
                 else:
                     print("The hash values are different.")
-                oldHashValue = None
-                hash_created = False
+            oldHashValue = None         #at the end of every loop, variables are gettin initialized again, for the next loop.
+            hash_created = False
         else:
             print("Exiting program.")
             return
