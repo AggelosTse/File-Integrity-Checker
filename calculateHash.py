@@ -5,7 +5,7 @@ def calculate_file_hash(file_path, algorithm):  #takes the path of a file, and t
     if algorithm == "MD5":          
         hash_obj = hashlib.md5()    #creates a hash object depending on the algorithm. (This object will contain the hash value)
     elif algorithm == "SHA-1":
-        hash_obj = hashlib.sha1()
+        hash_obj = hashlib.sha1() 
     elif algorithm == "SHA-256":
         hash_obj = hashlib.sha256()
     elif algorithm == "SHA3-256":

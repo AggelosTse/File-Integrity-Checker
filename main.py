@@ -18,8 +18,8 @@ def main():
     
     while True:
         
-        print("1. Create hash value for file \n")       #start the program depending on user's choise
-        print("2. Confirm hash value for file \n")
+        print("1. Generate hash value for file \n")       #start the program depending on user's choise
+        print("2. Verify hash value for file \n")
         print("3. Exit program \n")
         
         useranswer = input()
@@ -51,7 +51,7 @@ def main():
             
         elif useranswer == "2":
             if not hash_created:                     #you can confirm the hash value ONLY if there's already one created.
-                print("Error occured. Hash value not created. \n")
+                print("Error occured. Hash value not generated. \n")
                 time.sleep(2)
                 clearscr()
                 continue 
