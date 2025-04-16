@@ -25,14 +25,14 @@ def main():
         useranswer = input()
         while useranswer not in ["1", "2", "3"]:        #making sure input is valid
             clearscr()
-            useranswer = input("Input wrong, try again. \n")
+            useranswer = input("Input wrong, try again. (1,2,3) \n")
         
         if useranswer == "1":
             clearscr()
             
             algo = input("What type of algorithm: \n").strip().lower()  
             while algo not in algorithms:                                   #checking for valid user input
-                algo = input("Error occurred. Try again with a valid algorithm: (MD5, SHA-1, SHA-256, SHA3-256) \n").strip().lower()
+                algo = input("Error occurred. Try again with a valid algorithm: (md5, sha-1, sha-256, sha3-256) \n").strip().lower()
                 
                 
             clearscr()
@@ -57,10 +57,10 @@ def main():
                 continue 
             
             clearscr()
-            algo = input("What type of algorithm: \n").strip().upper() 
+            algo = input("What type of algorithm: \n").strip().lower() 
 
             while algo not in algorithms:
-                algo = input("Error occurred. Try again with a valid algorithm: (MD5, SHA-1, SHA-256, SHA3-256) \n").strip().upper()
+                algo = input("Error occurred. Try again with a valid algorithm: (md5, sha-1, sha-256, sha3-256) \n").strip().lower()
 
             file_path = input("Give file path \n")        
             original = input(f"Give the original hash value: (latest hash value of the file: {oldHashValue}) \n")
