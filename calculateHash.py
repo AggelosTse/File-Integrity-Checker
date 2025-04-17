@@ -23,5 +23,5 @@ def calculate_file_hash(file_path, algorithm):  #takes the path of a file, and t
                 hash_obj.update(block)  # Feed block into the hash object
         return hash_obj.hexdigest()     #creates the final hash value and returns it
     except FileNotFoundError:
-        print(f"Error occured. File doesnt exist or couldnt be found. \n")
+        print("Error occured. File doesnt exist or couldnt be found. \n")
         return None

@@ -14,6 +14,7 @@ def main():
     
     oldHashValue = None     # it contains the hash value when it's created
     hash_created = False    # bool variable checking if the hash value is created or not
+    
     algorithms = ["md5", "sha-1", "sha-256", "sha3-256"]    
     
     while True:
@@ -23,6 +24,7 @@ def main():
         print("3. Exit program \n")
         
         useranswer = input()
+        
         while useranswer not in ["1", "2", "3"]:        #making sure input is valid
             clearscr()
             useranswer = input("Input wrong, try again. (1,2,3) \n")
@@ -63,15 +65,22 @@ def main():
                 algo = input("Error occurred. Try again with a valid algorithm: (md5, sha-1, sha-256, sha3-256) \n").strip().lower()
 
             file_path = input("Give file path \n")        
+            if  not (os.path.isfile(file_path)):            #checks if the file exists before it aska for the original value
+                clearscr()
+                print("Error occured. File doesnt exist or couldnt be found. \n")
+                time.sleep(2)
+                clearscr()
+                oldHashValue = None                        #if it doesnt exist, it initializes the variables and leaves this loop iteration
+                hash_created = False
+                continue
+            
+            
             original = input(f"Give the original hash value: (latest hash value of the file: {oldHashValue}) \n")
             current = calculate_file_hash(file_path, algo)      #creates a hash value again for the file
             
-            if current:
-                sameOrNot = verify_file_integrity(original, current)    #then checks if the latest hash value created, is the same as the old one
-                if sameOrNot:
-                    print("The hash values are the same.")
-                else:
-                    print("The hash values are different.")
+            
+            verify_file_integrity(original, current)    #then checks if the latest hash value created, is the same as the old one  
+                
             oldHashValue = None         #at the end of every loop, variables are gettin initialized again, for the next loop.
             hash_created = False
         else:
