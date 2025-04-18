@@ -6,10 +6,9 @@ def verify_file_integrity(original_hash, current_hash):
         print("Error occured. One or both of the hash values are invalid. \n")
         time.sleep(2)
         return  
-    if hmac.compare_digest(original_hash, current_hash):
+    if hmac.compare_digest(original_hash, current_hash):        #using the compare digest function helps on avoiding timing attacks
         print("Hash values are the same. \n")
-        time.sleep(2)
     else:
         print("Hash values are different. \n")
-        time.sleep(2)
-         
+    time.sleep(2)
+    

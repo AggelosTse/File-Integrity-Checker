@@ -9,7 +9,7 @@ def calculate_file_hash(file_path, algorithm):  #takes the path of a file, and t
     elif algorithm == "sha-256":
         hash_obj = hashlib.sha256()
     elif algorithm == "sha3-256":
-        hash_obj = hashlib.sha3_256()
+        hash_obj = hashlib.sha3_256() 
     else:
         print("Error occured. Algorithm name is not correct. \n")
         return None

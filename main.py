@@ -40,6 +40,7 @@ def main():
             clearscr()
             file_path = input("Give file path \n")
             
+            clearscr()
             current = calculate_file_hash(file_path, algo)          #function that calculates the current hash value
             
             oldHashValue = current                          #when hash value is created, it is stored in this variable
@@ -60,35 +61,37 @@ def main():
             
             clearscr()
             algo = input("What type of algorithm: \n").strip().lower() 
-
+            clearscr()
+            
             while algo not in algorithms:
+                clearscr()
                 algo = input("Error occurred. Try again with a valid algorithm: (md5, sha-1, sha-256, sha3-256) \n").strip().lower()
-
+            clearscr()
+            
             file_path = input("Give file path \n")        
             if  not (os.path.isfile(file_path)):            #checks if the file exists before it aska for the original value
                 clearscr()
                 print("Error occured. File doesnt exist or couldnt be found. \n")
                 time.sleep(2)
                 clearscr()
-                oldHashValue = None                        #if it doesnt exist, it initializes the variables and leaves this loop iteration
-                hash_created = False
                 continue
             
-            
+            clearscr()
             original = input(f"Give the original hash value: (latest hash value of the file: {oldHashValue}) \n")
+            clearscr()
             current = calculate_file_hash(file_path, algo)      #creates a hash value again for the file
             
             
             verify_file_integrity(original, current)    #then checks if the latest hash value created, is the same as the old one  
                 
-            oldHashValue = None         #at the end of every loop, variables are gettin initialized again, for the next loop.
+            oldHashValue = None         #at the end of every loop, variables are getting initialized again, for the next loop.
             hash_created = False
         else:
+            clearscr()
             print("Exiting program.")
             return
         
-        time.sleep(2)
-        clearscr()
+        clearscr() 
 
 if __name__ == "__main__":
     main()
