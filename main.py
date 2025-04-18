@@ -34,16 +34,22 @@ def main():
             
             algo = input("What type of algorithm: \n").strip().lower()  
             while algo not in algorithms:                                   #checking for valid user input
+                clearscr()
                 algo = input("Error occurred. Try again with a valid algorithm: (md5, sha-1, sha-256, sha3-256) \n").strip().lower()
                 
                 
             clearscr()
             file_path = input("Give file path \n")
-            
-            clearscr()
+            if  not (os.path.isfile(file_path)):            #checks if the file exists before it aska for the original value
+                clearscr()
+                print("Error occured. File doesnt exist or couldnt be found. \n")
+                time.sleep(2)
+                clearscr()
+                continue
             current = calculate_file_hash(file_path, algo)          #function that calculates the current hash value
             
             oldHashValue = current                          #when hash value is created, it is stored in this variable
+            clearscr()
             if current:
                 print(f"Hash value of the file: {current}")
                 time.sleep(3)  
@@ -54,6 +60,7 @@ def main():
             
         elif useranswer == "2":
             if not hash_created:                     #you can confirm the hash value ONLY if there's already one created.
+                clearscr()
                 print("Error occured. Hash value not generated. \n")
                 time.sleep(2)
                 clearscr()

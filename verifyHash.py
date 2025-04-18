@@ -7,8 +7,8 @@ def verify_file_integrity(original_hash, current_hash):
         time.sleep(2)
         return  
     if hmac.compare_digest(original_hash, current_hash):        #using the compare digest function helps on avoiding timing attacks
-        print("Hash values are the same. \n")
+        print("Hash values are the same. File is not altered or changed. \n")
     else:
-        print("Hash values are different. \n")
+        print("Hash values are different. File may have been modified. \n")
     time.sleep(2)
     
