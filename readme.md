@@ -24,8 +24,8 @@ This Python project allows you to generate and verify the **hash value of a file
    - Select "Verify File" from the menu.
    - Provide the file and the original hash value.
    - The script compares both.
-     - ✅ If they match: The file is **pure** (unaltered).
-     - ❌ If they don't: The file has been **modified or corrupted**.
+     - If they match: The file is **pure** (unaltered).
+     - If they don't: The file has been **modified or corrupted**.
 
 ## 📄 Usage
 
