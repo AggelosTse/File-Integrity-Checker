@@ -1,19 +1,19 @@
-# File Integrity Checker 🔐
+# File Integrity Checker 
 
 This Python project allows you to generate and verify the **hash value of a file**, ensuring the file has not been tampered with or corrupted. It's a simple tool to maintain file integrity using cryptographic hash functions like **MD5**, **SHA-256** and more.
 
-## 🚀 Features
+## Features
 
 - Generate hash value of any file.
 - Verify file integrity by comparing the current hash with an original.
 - Menu-driven terminal interface.
 
-## 📦 Requirements
+## Requirements
 
 - **Python 3.12.3 or higher**
 - No external dependencies (uses Python's built-in `hashlib` module)
 
-## 🛠️ How It Works
+## How It Works
 
 1. **Generate Hash:**
    - Run the script and choose "Generate Hash" from the menu.
